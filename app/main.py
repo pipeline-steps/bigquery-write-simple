@@ -20,7 +20,7 @@ def main(step: StepArgs):
 
 if __name__ == "__main__":
     main(StepArgsBuilder()
-         .output()
+         .input()
          .config("billingProject")
          .config("tableId", optional=True)
          .config("ifExists", default_value="append")

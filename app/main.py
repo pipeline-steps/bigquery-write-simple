@@ -29,6 +29,14 @@ def main(step: StepArgs):
         autodetect=True  # Automatically detect schema from JSON
     )
 
+    # Configure time partitioning if partition field is specified
+    if step.config.partitionField:
+        job_config.time_partitioning = bigquery.TimePartitioning(
+            type_=bigquery.TimePartitioningType.DAY,
+            field=step.config.partitionField
+        )
+        print(f"Configuring daily partitioning on field: {step.config.partitionField}")
+
     # Load data to BigQuery
     start_time = timeit.default_timer()
     print(f"Loading data to {step.config.tableId} (using project {step.config.billingProject} for billing)")
@@ -57,5 +65,6 @@ if __name__ == "__main__":
          .config("billingProject")
          .config("tableId")
          .config("ifExists", default_value="append")
+         .config("partitionField", optional=True)
          .build()
          )

@@ -1,3 +1,2 @@
-pandas==2.3.0
-pandas-gbq==0.29.0
-steputil==0.2.6
+google-cloud-bigquery==3.28.0
+steputil==0.2.7

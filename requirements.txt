@@ -1,2 +1,2 @@
 google-cloud-bigquery==3.28.0
-steputil==0.2.7
+steputil==0.2.10
